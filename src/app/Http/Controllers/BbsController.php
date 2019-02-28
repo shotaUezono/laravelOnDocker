@@ -2,10 +2,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Bbs;
 
 Class BbsController extends Controller{
     public function index(){
-        return view('bbs.index');
+        $bbs = Bbs::all();
+        return view('bbs.index', ["bbs" => $bbs]);
     }
     
     public function create(Request $request){
@@ -27,10 +29,14 @@ Class BbsController extends Controller{
         $name = $request->input('name');
         $comment = $request->input('comment');
         
-        return view('bbs.index')->with([
-            "name" => $name,
-            "comment" => $comment
-        ]);
+        //名前とコメントをbbsテーブルへinsertする。
+        Bbs::insert(["name" => $name, "comment" => $comment]);
+        
+        //bbsテーブルの内容を全取得
+        $bbs = Bbs::all();
+        
+        return view('bbs.index')->with([ "bbs" => $bbs ]);
+        // return view('bbs.index')->with(["bbs" => $bbs, "name" => $name, "comment" => $comment ]);
         
     }
 }

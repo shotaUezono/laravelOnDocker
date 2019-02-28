@@ -2,3 +2,29 @@ h1 {
   font-size: 16px;
   border-bottom: solid 1px;
 }
+
+.bbsform {
+  border: solid 1px;
+  padding: 10px;
+  margin: 5px 0 0 0;
+}
+.bbsform h2,p {
+  font-size: 12px;
+}
+
+.bbsform h2 {
+  border-bottom: solid 1px;
+}
+.mainbbs {
+  border: solid 1px;
+  padding: 10px;
+}
+
+.bbsname {
+  font-size: 12px;
+  border-bottom: solid 1px;
+}
+
+.bbsbody {
+  font-size: 10px;
+}
