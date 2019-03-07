@@ -19,3 +19,5 @@ Route::get('/', function () {
 Route::resource('/user', 'UserController', ['only' =>['index', 'show']]);
 Route::get('/bbs', 'BbsController@index');
 Route::post('/bbs', 'BbsController@create');
+Route::get('/home', 'HomeController@index');
+Route::post('/upload', 'HomeController@upload');
