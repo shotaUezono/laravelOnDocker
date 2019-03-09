@@ -1,0 +1,66 @@
+pueue用のtable作成用migrationファイルを作成およびmigration実行
+	php artisan queue:table
+	php artisan migration
+
+config/queue.phpの中身を以下のように変更する
+	//'default' => env('QUEUE_CONNECTION', 'sync'),
+	'default' => env('QUEUE_DRIVER', 'database'),
+
+jobを定義
+	php artisan make:job job名
+以上のコマンドで、app/Jobs/配下にjob名.phpファイルができる。
+ファイルの中身は以下のようになっているはず。
+-------------------------------------------------------------------------------------------
+<?php
+
+namespace App\Jobs;
+
+use Illuminate\Bus\Queueable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+
+
+class job名 implements ShouldQueue
+{
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        //
+    }
+
+    /**
+     * Execute the job.
+     *
+     * @return void
+     */
+    public function handle()
+    {
+
+    }
+}
+---------------------------------------------------------------------------------------------
+handle関数にjobの中身を記述していく。
+
+※tips
+	use Illuminate\Support\Facades\Log;を記述すると
+	log関係のstaticメソッドがLog::で使えるようになるよ。
+	Illuminate\Support\Facadesの中には色々入ってるから
+	使ってみるとよいと思うよ。
+
+ジョブキューへジョブの投入
+	dispatch(new App\Jobs\job名);
+	dispatch_now関数もある。ジョブを即座に実行しhandle関数から値をもらう。
+
+Workerの起動
+	php artisan queue:work
+このコマンドでworkerを起動できる。
+このコマンドはjobの実行状態等を確認できるっぽいが、
+まだ完全に理解できているわけじゃないので、あとでちゃんと調べる。
