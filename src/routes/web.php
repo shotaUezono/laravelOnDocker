@@ -28,3 +28,5 @@ Route::get('/test', function(){
     dispatch($log);
     return 'ユーザー登録完了を通知するメールを送信しました。';
 });
+
+Route::get('/bbs/api/{user}', 'TestApiController@index');
