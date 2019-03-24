@@ -16,3 +16,5 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Route::match(["get", "options"], '/bbs/{user}', 'TestApiController@index');
+Route::match(["get", "options"], '/bbs/{user}', 'TestApiController@index');

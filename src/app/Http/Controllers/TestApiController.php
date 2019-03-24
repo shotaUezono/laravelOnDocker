@@ -7,7 +7,7 @@ use DB;
 
 class TestApiController extends Controller
 {
-    public function index(User $user) : array
+    public function index(User $user)
     {
         //print_r($user);
         $key = $user->name;
@@ -22,7 +22,7 @@ class TestApiController extends Controller
         }catch(\Exception $e){
         	return array('id'=>null, 'name'=>null, 'comment'=>null);
         }
-        return array('user_info' => $return_json);
+        return response()->json(array('user_info' => $return_json));
     }
     
 }
