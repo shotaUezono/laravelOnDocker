@@ -29,4 +29,4 @@ Route::get('/test', function(){
     return 'ユーザー登録完了を通知するメールを送信しました。';
 });
 
-Route::get('/bbs/api/{user}', 'TestApiController@index');
+//Route::get('/bbs/{user}/api', 'TestApiController@index');
