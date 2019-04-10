@@ -5,6 +5,12 @@ use Illuminate\Http\Request;
 use App\Model\Bbs;
 
 Class BbsController extends Controller{
+	
+	public function __contruct()
+	{
+		//login必須用設定
+		$this->middleware('auth');
+	}
     public function index(){
         $bbs = Bbs::all();
         return view('bbs.index', ["bbs" => $bbs]);

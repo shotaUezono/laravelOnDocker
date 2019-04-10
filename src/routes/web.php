@@ -11,16 +11,17 @@
 |
 */
 
+/*
 Route::get('/', function () {
     return view('welcome');
 });
+*/
 
 //Route::get('/user', 'UserController@index');
 Route::resource('/user', 'UserController', ['only' =>['index', 'show']]);
-Route::get('/bbs', 'BbsController@index');
-Route::post('/bbs', 'BbsController@create');
+//Route::get('/bbs', 'BbsController@index');
+//Route::post('/bbs', 'BbsController@create');
 Route::get('/', 'HomeController@index');
-Route::get('/home', 'HomeController@index');
 Route::post('/upload', 'HomeController@upload');
 Route::get('/test', function(){
     $log = (new \App\Jobs\SendReminderEmail)->delay(10);
@@ -29,4 +30,19 @@ Route::get('/test', function(){
     return 'ユーザー登録完了を通知するメールを送信しました。';
 });
 
-//Route::get('/bbs/{user}/api', 'TestApiController@index');
+//Auth::routes();
+//Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['middleware' => 'web'], function () {
+
+    //
+    Route::auth();
+
+    //これ
+    //Route::get('/home', 'HomeController@index');
+    Route::get('/bbs', 'BbsController@index');
+    Route::post('/bbs', 'BbsController@create');
+});
+
+Route::get('/pict', 'pictController@index');
+Route::post('/pict/upload', 'pictController@upload');
