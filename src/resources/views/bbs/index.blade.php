@@ -1,7 +1,7 @@
-@extends('common.header')
+@extends('layouts.app')
 
 @section('content')
-
+<div class="container">
 <!-- error message -->
 @if ($errors->any())
     <h2>エラーメッセージ</h2>
@@ -46,5 +46,5 @@
     <button class="btn btn-success"> 送信 </button>
 </form>
 </div>
-
+</div>
 @endsection
