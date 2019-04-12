@@ -18,3 +18,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 //Route::match(["get", "options"], '/bbs/{user}', 'TestApiController@index');
 Route::match(["get", "options"], '/bbs/{user}', 'TestApiController@index');
+
+
+Route::group(['middleware' => 'api'], function(){
+	Route::get('get', 'TodoController@getTodos');
+	Route::post('add', 'TodoController@addTodo');
+	Route::post('del', 'TodoController@deleteTodo');
+});
