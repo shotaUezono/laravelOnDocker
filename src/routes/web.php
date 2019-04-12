@@ -17,6 +17,11 @@ Route::get('/', function () {
 });
 */
 
+
+Route::get('/{any}', function(){
+	return view('welcome');
+})->where("any", '.*');
+
 //Route::get('/user', 'UserController@index');
 Route::resource('/user', 'UserController', ['only' =>['index', 'show']]);
 //Route::get('/bbs', 'BbsController@index');
